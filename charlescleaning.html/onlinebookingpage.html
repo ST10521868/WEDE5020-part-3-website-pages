@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Booking | Charles Cleaning</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="topbar">
+        <div class="brand" aria-label="Charles Cleaning logo and brand">
+          <img src="../assets/charles-cleaning-logo.png" alt="Charles Cleaning logo" />
+          <div class="brand-text">
+            <span>Charles</span>
+            <small>Cleaning</small>
+          </div>
+        </div>
+<!-- Navigation -->
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="homepage.html">Home</a>
+          <a href="aboutuspage.html">About Us</a>
+          <a href="servicespage.html">Services</a>
+          <a href="gallerypage.html">Gallery</a>
+          <a href="quotepage.html">Quote</a>
+          <a class="active" href="onlinebookingpage.html">Booking</a>
+          <a href="contactpage.html">Contact</a>
+        </nav>
+      </header>
+// Main content
+      <main class="content">
+        <header class="page-header">
+          <div class="badge">Book now</div>
+          <h1>Schedule an appointment</h1>
+          <p>Choose the date, time, and service you need and our team will take it from there.</p>
+        </header>
+
+        <section class="form-layout">
+          <div class="form-card">
+            <label for="date">Select date</label>
+            <input id="date" type="date" />
+
+            <label for="time">Select time</label>
+            <input id="time" type="time" />
+<!-- Service selection section with dropdowns for service type and quote number -->
+            <label for="service">Select type of service</label>
+            <select id="service">
+              <option>Home cleaning</option>
+              <option>Car cleaning</option>
+              <option>Property cleaning</option>
+              <option>Full detailing</option>
+            </select>
+
+            <label for="quote">Enter your quote number</label>
+            <input id="quote" type="text" placeholder="Quote number" />
+
+            <button type="button">Book now</button>
+          </div>
+<!-- Service promise section highlighting the company's commitment to dependable and flexible scheduling -->
+          <aside class="card" style="align-self:start;">
+            <div class="badge">Service promise</div>
+            <h2>Dependable, flexible scheduling.</h2>
+            <p>We work around your routine to keep your home, workspace, or vehicle spotless without the stress.</p>
+            <p>Our team is ready to help with premium care and consistent communication.</p>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quote | Charles Cleaning</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="topbar">
+        <div class="brand" aria-label="Charles Cleaning logo and brand">
+          <img src="../assets/charles-cleaning-logo.png" alt="Charles Cleaning logo" />
+          <div class="brand-text">
+            <span>Charles</span>
+            <small>Cleaning</small>
+          </div>
+        </div>
+<!-- Navigation -->
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="homepage.html">Home</a>
+          <a href="aboutuspage.html">About Us</a>
+          <a href="servicespage.html">Services</a>
+          <a href="gallerypage.html">Gallery</a>
+          <a class="active" href="quotepage.html">Quote</a>
+          <a href="onlinebookingpage.html">Booking</a>
+          <a href="contactpage.html">Contact</a>
+        </nav>
+      </header>
+      <!-- Main content -->
+      <main class="content">
+        <header class="page-header">
+          <div class="badge">Free estimate</div>
+          <h1>Request a quote</h1>
+          <p>Get a fast estimate for your cleaning or detailing service.</p>
+        </header>
+       <!-- Quote form section with service selection, property size, car type, and service options -->
+        <section class="form-layout">
+          <div class="form-card">
+            <label for="serviceType">Choose service</label>
+            <select id="serviceType">
+              <option value="home">Home cleaning</option>
+              <option value="car">Car cleaning</option>
+            </select>
+<!-- Home fields section with property size input, initially visible -->
+            <div id="homeFields">
+              <label for="size">Size of property (m²)</label>
+              <input id="size" type="number" placeholder="Enter square metres" />
+            </div>
+<!-- Car fields section with car type and service options, initially hidden -->
+            <div id="carFields" class="hidden">
+              <label for="carType">Choose car type</label>
+              <select id="carType">
+                <option value="1">Small car</option>
+                <option value="1.3">Sedan</option>
+                <option value="1.6">SUV</option>
+                <option value="2">Bakkie / Large vehicle</option>
+              </select>
+<!-- Service options section with pricing for different car cleaning services -->
+              <label for="serviceOption">Choose service</label>
+              <select id="serviceOption">
+                <option value="50">Exterior wash only - R50</option>
+                <option value="150">Interior clean - R150</option>
+                <option value="250">Full detail - R250</option>
+                <option value="350">Premium detailing - R350</option>
+              </select>
+            </div>
+<!-- Location selection section with dropdown for different locations -->
+            <label for="location">Choose location</label>
+            <select id="location">
+              <option>Johannesburg</option>
+              <option>Pretoria</option>
+              <option>Sandton</option>
+              <option>Midrand</option>
+              <option>Centurion</option>
+              <option>Roodepoort</option>
+              <option>Randburg</option>
+              <option>Germiston</option>
+            </select>
+<!-- Button to trigger quote calculation and display of price and quote number -->
+            <button type="button" id="quoteBtn">Get price</button>
+            <div class="price" id="priceResult">Price: R0.00</div>
+            <div class="quote-number" id="quoteNumberDisplay">Quote number: -</div>
+            <p class="note">Home estimate: R50 per square metre. Car packages begin at R50 for exterior wash only.</p>
+          </div>
+<!-- Why choose us section highlighting fast and transparent pricing -->
+          <aside class="card" style="align-self:start;">
+            <div class="badge">Why choose us</div>
+            <h2>Fast and transparent pricing.</h2>
+            <p>Every quote is tailored to your property size, vehicle type, and service level, with no hidden surprises.</p>
+            <p>We provide the same premium care for homes, offices, and cars across Gauteng.</p>
+          </aside>
+        </section>
+      </main>
+    </div>
+// JavaScript for quote calculation and local storage
+    <script>
+      const quoteBtn = document.getElementById('quoteBtn');
+      const sizeInput = document.getElementById('size');
+      const serviceType = document.getElementById('serviceType');
+      const homeFields = document.getElementById('homeFields');
+      const carFields = document.getElementById('carFields');
+      const serviceOption = document.getElementById('serviceOption');
+      const carType = document.getElementById('carType');
+      const priceResult = document.getElementById('priceResult');
+      const quoteNumberDisplay = document.getElementById('quoteNumberDisplay');
+// Function to generate a unique quote number based on the current date and a random number
+      function generateQuoteNumber() {
+        const date = new Date();
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const random = Math.floor(Math.random() * 9000) + 1000;
+        return 'CC-' + year + month + day + '-' + random;
+      }
+// Function to save the quote details in local storage for future reference
+      function saveQuote(quoteNumber, service, total) {
+        const savedQuotes = JSON.parse(localStorage.getItem('charlesCleaningQuotes') || '[]');
+        savedQuotes.push({ quoteNumber, service, total });
+        localStorage.setItem('charlesCleaningQuotes', JSON.stringify(savedQuotes));
+        return quoteNumber;
+      }
+// Function to update the visibility of home and car fields based on the selected service type
+      function updateFields() {
+        if (serviceType.value === 'home') {
+          homeFields.classList.remove('hidden');
+          carFields.classList.add('hidden');
+        } else {
+          homeFields.classList.add('hidden');
+          carFields.classList.remove('hidden');
+        }
+      }
+// Event listeners for service type change and quote button click to calculate and display the quote
+      serviceType.addEventListener('change', updateFields);
+
+      quoteBtn.addEventListener('click', function () {
+        const service = serviceType.value;
+        let total = 0;
+// Calculate the total price based on the selected service type and inputs
+        if (service === 'home') {
+          const sqm = Number(sizeInput.value) || 0;
+          total = sqm * 50;
+          priceResult.textContent = 'Estimated home quote: R' + total.toFixed(2);
+        } else {
+          const servicePrice = Number(serviceOption.value) || 0;
+          const carMultiplier = Number(carType.value) || 1;
+          total = servicePrice * carMultiplier;
+          priceResult.textContent = 'Estimated car quote: R' + total.toFixed(2);
+        }
+// Generate a quote number, save the quote, and display the quote number to the user
+        const quoteNumber = generateQuoteNumber();
+        saveQuote(quoteNumber, service, total);
+        quoteNumberDisplay.textContent = 'Quote number: ' + quoteNumber;
+      });
+
+      updateFields();
+    </script>
+  </body>
+</html>

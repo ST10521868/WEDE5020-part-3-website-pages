@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Charles Cleaning</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Main container for the webpage -->
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="Charles Cleaning logo and brand">
+          <img src="../assets/charles-cleaning-logo.png" alt="Charles Cleaning logo" />
+          <div class="brand-text">
+            <span>Charles</span>
+            <small>Cleaning</small>
+          </div>
+        </div>
+
+        <div class="header-tools">
+          <label class="searchbar" aria-label="Search services and pages">
+            <span class="search-icon">⌕</span>
+            <input id="serviceSearch" type="search" placeholder="Search services, quotes, booking..." />
+          </label>
+        </div>
+
+        <!-- Navigation menu with links to different pages of the website -->
+        <nav class="main-nav" aria-label="Main navigation">
+          <a class="active" href="homepage.html">Home</a>
+          <a href="aboutuspage.html">About Us</a>
+          <a href="servicespage.html">Services</a>
+          <a href="gallerypage.html">Gallery</a>
+          <a href="quotepage.html">Quote</a>
+          <a href="onlinebookingpage.html">Booking</a>
+          <a href="contactpage.html">Contact</a>
+        </nav>
+      </header>
+<!-- Main content area of the homepage -->
+      <main class="content">
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">Premium cleaning specialists</div>
+            <h1>Fresh spaces, flawless results.</h1>
+            <p>
+              Charles Cleaning delivers professional home, office, and vehicle care with
+              dependable service, detail-driven results, and a polished finish that feels
+              brand new.
+            </p>
+            <!-- Call-to-action buttons for getting a quote or contacting the company -->
+            <div class="cta-row">
+              <a class="primary-btn" href="quotepage.html">Get a free quote</a>
+              <a class="secondary-btn" href="contactpage.html">Talk to us</a>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <img
+              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80"
+              alt="Professional cleaner polishing a modern home"
+            />
+          </div>
+        </section>
+       <!-- Statistics section highlighting key metrics about the company -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <strong>200+</strong>
+            <span>happy clients</span>
+          </div>
+          <div class="stat-card">
+            <strong>5.0</strong>
+            <span>average rating</span>
+          </div>
+          <div class="stat-card">
+            <strong>24/7</strong>
+            <span>support & booking</span>
+          </div>
+        </section>
+<!-- Featured services section showcasing the main services offered by the company -->
+        <section class="info-grid">
+          <div class="card">
+            <div class="badge">Business profile</div>
+            <h2>Built for clean living and cleaner spaces.</h2>
+            <p>
+              Founded by Lufuno Nemaghuvhuni in 2025, Charles Cleaning was created to help
+              busy families, professionals, and businesses keep their spaces spotless with
+              reliable service and a friendly touch.
+            </p>
+            <p>
+              We help clients reclaim their time while restoring comfort, order, and pride in
+              every room, office, and vehicle.
+            </p>
+          </div>
+<!-- Image stack section displaying images related to the company's services -->
+          <div class="image-stack">
+            <img
+              src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=700&q=80"
+              alt="Professional cleaning service in a home"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&w=700&q=80"
+              alt="Cleaning supplies and fresh workspace"
+            />
+          </div>
+        </section>
+<!-- Featured services section showcasing the main services offered by the company -->
+        <section class="feature-grid">
+          <article class="feature-card search-item" data-search="home cleaning house deep clean bathroom kitchen bedroom maintenance sparkling rooms">
+            <div class="feature-icon">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSfVkhTYUQX7ZkuJYHQQDFxgkDzjMI3akBdrHMXQ475Q&s=10" alt="Home cleaning icon" />
+            </div>
+            <h3>Home cleaning</h3>
+            <p>Deep cleaning, regular maintenance, and sparkling finishes for every room.</p>
+          </article>
+          <article class="feature-card search-item" data-search="car detailing vehicle interior exterior polish showroom clean wash detail valet">
+            <div class="feature-icon">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcu1L82hGFaoBM3yVV9-cS9jTjsn-IgeUA6kEMAW7-AA&s=10" alt="Car detailing icon" />
+            </div>
+            <h3>Car detailing</h3>
+            <p>Interior and exterior detailing that gives every vehicle a polished showroom feel.</p>
+          </article>
+          <article class="feature-card search-item" data-search="commercial care office workspace business office cleaning professional property upkeep corporate workspace">
+            <div class="feature-icon">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-T7tqUvMYUxZPObOtMJFYc7okm0G9LJOI5NaLsvQqdQ&s=10" alt="Commercial cleaning icon" />
+            </div>
+            <h3>Commercial care</h3>
+            <p>Professional property upkeep designed for offices, homes, and busy workspaces.</p>
+          </article>
+        </section>
+<!-- Empty state and search guide sections for the search functionality -->
+        <div id="searchEmpty" class="search-empty" aria-live="polite">
+          No matching services were found. Try searching for home cleaning, car detailing, or commercial care.
+        </div>
+
+        <div id="searchGuide" class="search-guide" aria-live="polite"></div>
+      </main>
+    </div>
+
+    <script>
+      const searchInput = document.getElementById('serviceSearch');
+      const searchableCards = document.querySelectorAll('.search-item');
+      const emptyState = document.getElementById('searchEmpty');
+      const searchGuide = document.getElementById('searchGuide');
+<!-- Mapping of search terms to their corresponding page routes -->
+      const routeMap = {
+        'home': { label: 'Home', href: 'homepage.html' },
+        'homepage': { label: 'Home', href: 'homepage.html' },
+        'about': { label: 'About Us', href: 'aboutuspage.html' },
+        'about us': { label: 'About Us', href: 'aboutuspage.html' },
+        'services': { label: 'Services', href: 'servicespage.html' },
+        'service': { label: 'Services', href: 'servicespage.html' },
+        'home cleaning': { label: 'Home Cleaning Services', href: 'servicespage.html' },
+        'house cleaning': { label: 'Home Cleaning Services', href: 'servicespage.html' },
+        'deep clean': { label: 'Home Cleaning Services', href: 'servicespage.html' },
+        'bathroom': { label: 'Gallery', href: 'gallerypage.html' },
+        'kitchen': { label: 'Gallery', href: 'gallerypage.html' },
+        'bedroom': { label: 'Gallery', href: 'gallerypage.html' },
+        'lounge': { label: 'Gallery', href: 'gallerypage.html' },
+        'office': { label: 'Gallery', href: 'gallerypage.html' },
+        'car detailing': { label: 'Car Detailing', href: 'servicespage.html' },
+        'car detail': { label: 'Car Detailing', href: 'servicespage.html' },
+        'vehicle detail': { label: 'Car Detailing', href: 'servicespage.html' },
+        'exterior': { label: 'Gallery', href: 'gallerypage.html' },
+        'commercial cleaning': { label: 'Commercial Care', href: 'servicespage.html' },
+        'commercial care': { label: 'Commercial Care', href: 'servicespage.html' },
+        'office cleaning': { label: 'Commercial Care', href: 'servicespage.html' },
+        'quote': { label: 'Get a Quote', href: 'quotepage.html' },
+        'pricing': { label: 'Get a Quote', href: 'quotepage.html' },
+        'cost': { label: 'Get a Quote', href: 'quotepage.html' },
+        'price': { label: 'Get a Quote', href: 'quotepage.html' },
+        'booking': { label: 'Book a Service', href: 'onlinebookingpage.html' },
+        'book': { label: 'Book a Service', href: 'onlinebookingpage.html' },
+        'appointment': { label: 'Book a Service', href: 'onlinebookingpage.html' },
+        'gallery': { label: 'View our Gallery', href: 'gallerypage.html' },
+        'contact': { label: 'Contact Us', href: 'contactpage.html' },
+        'contact us': { label: 'Contact Us', href: 'contactpage.html' },
+        'charles cleaning': { label: 'Home', href: 'homepage.html' },
+        'cleaning': { label: 'Services', href: 'servicespage.html' }
+      };
+// Function to find the best matching route based on the search term
+      function findBestRoute(term) {
+        if (!term) return null;
+
+        const normalized = term.toLowerCase().trim();
+        const entries = Object.entries(routeMap)
+          .map(([key, value]) => [key.toLowerCase(), value])
+          .sort((a, b) => b[0].length - a[0].length);
+
+        for (const [key, value] of entries) {
+          if (normalized.includes(key) || key.includes(normalized)) {
+            return value;
+          }
+        }
+
+        return null;
+      }
+// Function to apply the search filter and update the UI based on the search term
+      function applySearch() {
+        const term = searchInput.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        searchableCards.forEach((card) => {
+          const haystack = (card.dataset.search || card.textContent || '').toLowerCase();
+          const matches = !term || haystack.includes(term);
+          card.hidden = !matches;
+
+          if (matches) {
+            visibleCount += 1;
+          }
+        });
+// Update the search guide with the best matching route or a message if no match is found
+        const route = findBestRoute(term);
+
+        if (route) {
+          searchGuide.innerHTML = `<strong>Best match:</strong><a href="${route.href}">${route.label}</a>`;
+          searchGuide.classList.add('visible');
+        } else if (term.length > 0) {
+          searchGuide.innerHTML = '<strong>No exact match found.</strong> Try: home cleaning, car detailing, commercial care, quote, booking, gallery, or contact.';
+          searchGuide.classList.add('visible');
+        } else {
+          searchGuide.classList.remove('visible');
+        }
+
+        emptyState.classList.toggle('visible', visibleCount === 0 && term.length > 0);
+      }
+// Event listeners for the search input to apply the search filter and handle Enter key navigation
+      searchInput.addEventListener('input', applySearch);
+      searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          const term = searchInput.value.trim();
+          const route = findBestRoute(term);
+
+          if (route) {
+            window.location.href = route.href;
+          }
+        }
+      });
+      applySearch();
+    </script>
+  </body>
+</html>
