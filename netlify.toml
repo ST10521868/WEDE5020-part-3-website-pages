@@ -1,0 +1,17 @@
+[build]
+  # The live website is plain HTML/CSS, so no Expo build is needed.
+  # Copy only the website files into dist/ and publish that folder.
+  command = "rm -rf dist && mkdir -p dist && cp -r charlescleaning.html assets dist/"
+  publish = "dist"
+
+# The website pages live in the charlescleaning.html/ folder, so send
+# visitors from the root URL to the homepage.
+[[redirects]]
+  from = "/"
+  to = "/charlescleaning.html/homepage.html"
+  status = 302
+
+[[redirects]]
+  from = "/index.html"
+  to = "/charlescleaning.html/homepage.html"
+  status = 302
